@@ -7,6 +7,12 @@
 *.obj
 *.elf
 
+# Binary files
+*.bin
+
+# Disassembly files
+*.dis
+
 # Linker output
 *.ilk
 *.map
