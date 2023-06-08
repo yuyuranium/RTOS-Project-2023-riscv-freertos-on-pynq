@@ -1,0 +1,3 @@
+[submodule "pynq_z2/pl"]
+	path = pynq_z2/pl
+	url = https://github.com/choucl/Ibex_AXI.git
