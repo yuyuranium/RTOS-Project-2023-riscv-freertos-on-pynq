@@ -4,7 +4,9 @@
 
 .section .text
 
-default_exc_handler:
+// Unimplemented trap handler goes here
+.weak default_trap_handler
+default_trap_handler:
   j .
 
 reset_handler:
@@ -77,12 +79,16 @@ sleep_loop:
   .section .vectors, "ax"
   .option norvc;
 
-  // All unimplemented interrupts/exceptions go to the default_exc_handler.
+  // Fill in vector tables with DEFAULT_TRAP_HANDLERs
+#ifndef DEFAULT_TRAP_HANDLER
+  #warning DEFAULT_TRAP_HANDLER not defined, use default trap handler
+  #define DEFAULT_TRAP_HANDLER default_trap_handler
+#endif
   .org 0x00
   .rept 32
-  jal x0, default_exc_handler
+  j DEFAULT_TRAP_HANDLER
   .endr
 
   // reset vector
   .org 0x80
-  jal x0, reset_handler
+  j reset_handler

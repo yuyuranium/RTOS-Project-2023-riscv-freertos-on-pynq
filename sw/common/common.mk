@@ -74,10 +74,11 @@ INCLUDES = \
     -I$(DRIVER_SOURCE_DIR) \
 		-I$(PROGRAM_SOURCE_DIR)
 
-# setup flags
-CFLAGS  = -O2 -g -Wall $(INCLUDES) $(RISCV_GCC_OPTS)
-LDFLAGS = -L. -T $(SW_ROOT)/common/link.ld $(RISCV_GCC_OPTS)
-LIBS    = -lm -lc -lgcc
+# setup flags (may be pre-set before including this file)
+CFLAGS  += -O2 -g -Wall $(INCLUDES) $(RISCV_GCC_OPTS)
+ASFLAGS += 
+LDFLAGS += -L. -T $(SW_ROOT)/common/link.ld $(RISCV_GCC_OPTS)
+LIBS    += -lm -lc -lgcc
 
 ###########
 # Targets #
@@ -114,7 +115,7 @@ $(PROGRAM).bin: $(PROGRAM).elf
 	$(CC) -c $(CFLAGS) -o $@ $<
 
 %.o: %.S
-	$(CC) -c $(CFLAGS) -o $@ $<
+	$(CC) -c $(CFLAGS) $(ASFLAGS) -o $@ $<
 
 clean:
 	$(RM) $(OBJS) $(OUTFILES)
