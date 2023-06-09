@@ -14,13 +14,13 @@ RISCV_GCC_OPTS = -march=rv32imcb -mabi=ilp32 -mcmodel=medany -nostartfiles -nost
 ###########
 
 ifndef PROGRAM
-$(error "Must define PROGRAM first")
+	$(error "Must define PROGRAM first")
 endif
 
 # root of the sw directory
 SW_ROOT ?= $(shell cd .. && pwd)
 
-# root to FreeRTOS & printf sources
+# root to sources
 FREERTOS_SOURCE_DIR = $(SW_ROOT)/FreeRTOS
 PRINTF_SOURCE_DIR   = $(SW_ROOT)/printf
 COMMON_SOURCE_DIR   = $(SW_ROOT)/common
@@ -32,33 +32,33 @@ HEAP_CONFIG ?= 5
 
 # collect all FreeRTOS sources
 FREERTOS_SRC = \
-    $(FREERTOS_SOURCE_DIR)/croutine.c \
-    $(FREERTOS_SOURCE_DIR)/list.c \
-    $(FREERTOS_SOURCE_DIR)/queue.c \
-    $(FREERTOS_SOURCE_DIR)/tasks.c \
-    $(FREERTOS_SOURCE_DIR)/timers.c \
-    $(FREERTOS_SOURCE_DIR)/stream_buffer.c \
-    $(FREERTOS_SOURCE_DIR)/event_groups.c \
-    $(FREERTOS_SOURCE_DIR)/portable/MemMang/heap_$(HEAP_CONFIG).c
+	$(FREERTOS_SOURCE_DIR)/croutine.c \
+	$(FREERTOS_SOURCE_DIR)/list.c \
+	$(FREERTOS_SOURCE_DIR)/queue.c \
+	$(FREERTOS_SOURCE_DIR)/tasks.c \
+	$(FREERTOS_SOURCE_DIR)/timers.c \
+	$(FREERTOS_SOURCE_DIR)/stream_buffer.c \
+	$(FREERTOS_SOURCE_DIR)/event_groups.c \
+	$(FREERTOS_SOURCE_DIR)/portable/MemMang/heap_$(HEAP_CONFIG).c
 
 # collect printf source
 PRINTF_SRC = $(PRINTF_SOURCE_DIR)/printf.c
 
 # collect common sources
 PORT_SRC = \
-		$(FREERTOS_SOURCE_DIR)/portable/GCC/RISC-V/port.c \
-    $(COMMON_SOURCE_DIR)/freertos_risc_v_trap.c \
-    $(COMMON_SOURCE_DIR)/common.c
+	$(FREERTOS_SOURCE_DIR)/portable/GCC/RISC-V/port.c \
+	$(COMMON_SOURCE_DIR)/freertos_risc_v_trap.c \
+	$(COMMON_SOURCE_DIR)/common.c
 
 # collect all assembly codes
 PORT_ASM = \
-		$(FREERTOS_SOURCE_DIR)/portable/GCC/RISC-V/portASM.S \
-    $(COMMON_SOURCE_DIR)/crt0.S
+	$(FREERTOS_SOURCE_DIR)/portable/GCC/RISC-V/portASM.S \
+	$(COMMON_SOURCE_DIR)/crt0.S
 
 # collect all driver codes
 DRIVER_SRC = \
-		$(DRIVER_SOURCE_DIR)/gpio.c \
-		$(DRIVER_SOURCE_DIR)/uart.c
+	$(DRIVER_SOURCE_DIR)/gpio.c \
+	$(DRIVER_SOURCE_DIR)/uart.c
 
 # collect all program sources
 PROGRAM_SRC = $(wildcard $(PROGRAM_SOURCE_DIR)/*.c)
@@ -68,12 +68,12 @@ PROGRAM_SRC = $(wildcard $(PROGRAM_SOURCE_DIR)/*.c)
 ####################
 # setup include paths
 INCLUDES = \
-    -I$(FREERTOS_SOURCE_DIR)/include \
-		-I$(FREERTOS_SOURCE_DIR)/portable/GCC/RISC-V \
-    -I$(PRINTF_SOURCE_DIR) \
-    -I$(COMMON_SOURCE_DIR) \
-    -I$(DRIVER_SOURCE_DIR) \
-		-I$(PROGRAM_SOURCE_DIR)
+	-I$(FREERTOS_SOURCE_DIR)/include \
+	-I$(FREERTOS_SOURCE_DIR)/portable/GCC/RISC-V \
+	-I$(PRINTF_SOURCE_DIR) \
+	-I$(COMMON_SOURCE_DIR) \
+	-I$(DRIVER_SOURCE_DIR) \
+	-I$(PROGRAM_SOURCE_DIR)
 
 # setup flags (may be pre-set before including this file)
 CFLAGS  += -O2 -g -Wall $(INCLUDES) $(RISCV_GCC_OPTS)

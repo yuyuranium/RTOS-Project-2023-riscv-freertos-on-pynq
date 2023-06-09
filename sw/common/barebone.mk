@@ -14,7 +14,7 @@ RISCV_GCC_OPTS = -march=rv32imcb -mabi=ilp32 -mcmodel=medany -nostartfiles -nost
 ###########
 
 ifndef PROGRAM
-$(error "Must define PROGRAM first")
+	$(error "Must define PROGRAM first")
 endif
 
 # root of the sw directory
@@ -31,16 +31,16 @@ PRINTF_SRC = $(PRINTF_SOURCE_DIR)/printf.c
 
 # collect common sources
 PORT_SRC = \
-    $(COMMON_SOURCE_DIR)/common.c
+	$(COMMON_SOURCE_DIR)/common.c
 
 # collect all assembly codes
 PORT_ASM = \
-    $(COMMON_SOURCE_DIR)/crt0.S
+	$(COMMON_SOURCE_DIR)/crt0.S
 
 # collect all driver codes
 DRIVER_SRC = \
-		$(DRIVER_SOURCE_DIR)/gpio.c \
-		$(DRIVER_SOURCE_DIR)/uart.c
+	$(DRIVER_SOURCE_DIR)/gpio.c \
+	$(DRIVER_SOURCE_DIR)/uart.c
 
 # collect all program sources
 PROGRAM_SRC = $(wildcard $(PROGRAM_SOURCE_DIR)/*.c)
@@ -50,10 +50,10 @@ PROGRAM_SRC = $(wildcard $(PROGRAM_SOURCE_DIR)/*.c)
 ####################
 # setup include paths
 INCLUDES = \
-    -I$(PRINTF_SOURCE_DIR) \
-    -I$(COMMON_SOURCE_DIR) \
-    -I$(DRIVER_SOURCE_DIR) \
-		-I$(PROGRAM_SOURCE_DIR)
+	-I$(PRINTF_SOURCE_DIR) \
+	-I$(COMMON_SOURCE_DIR) \
+	-I$(DRIVER_SOURCE_DIR) \
+	-I$(PROGRAM_SOURCE_DIR)
 
 # setup flags (may be pre-set before including this file)
 CFLAGS  += -O2 -g -Wall $(INCLUDES) $(RISCV_GCC_OPTS)
@@ -65,11 +65,11 @@ LIBS    += -lm -lc -lgcc
 # Targets #
 ###########
 # convert all sources to objects
-PRINTF_OBJ   = $(PRINTF_SRC:.c=.o)
-PORT_OBJ     = $(PORT_SRC:.c=.o) $(PORT_ASM:.S=.o)
-DRIVER_OBJ   = $(DRIVER_SRC:.c=.o)
-PROGRAM_OBJ  = $(PROGRAM_SRC:.c=.o)
-OBJS         = $(PRINTF_OBJ) $(PORT_OBJ) $(DRIVER_OBJ) $(PROGRAM_OBJ)
+PRINTF_OBJ  = $(PRINTF_SRC:.c=.o)
+PORT_OBJ    = $(PORT_SRC:.c=.o) $(PORT_ASM:.S=.o)
+DRIVER_OBJ  = $(DRIVER_SRC:.c=.o)
+PROGRAM_OBJ = $(PROGRAM_SRC:.c=.o)
+OBJS        = $(PRINTF_OBJ) $(PORT_OBJ) $(DRIVER_OBJ) $(PROGRAM_OBJ)
 
 # determine output files
 OUTFILES := $(PROGRAM).elf $(PROGRAM).dis $(PROGRAM).bin
