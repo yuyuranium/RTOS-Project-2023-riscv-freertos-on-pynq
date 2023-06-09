@@ -18,12 +18,7 @@ Porting FreeRTOS to a RISC-V based system on PYNQ-Z2
     $ cd fusesoc_libraries/ibex
     $ pip3 install -r python-requirements.txt
     ```
-- Run and build Vivado project
+- Build and run vivado Project
     ```
-    $ fusesoc run caslab:rtos:ibex_axi:1.0.0 --pnr none --jobs [JOBS]
-    ```
-    The Vivado project should be located at `build/caslab:rtos:ibex_axi:1.0.0/default-vivado`
-- Open project with Vivado
-    ```
-    $ vivado caslab:rtos:ibex_axi:1.0.0.xpr
+    $ bash scripts/build_proj.sh
     ```
