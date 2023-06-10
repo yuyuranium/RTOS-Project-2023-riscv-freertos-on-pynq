@@ -1,3 +1,9 @@
 [submodule "pynq_z2/pl"]
 	path = pynq_z2/pl
 	url = https://github.com/choucl/Ibex_AXI.git
+[submodule "sw/FreeRTOS"]
+	path = sw/FreeRTOS
+	url = https://github.com/FreeRTOS/FreeRTOS-Kernel.git
+[submodule "sw/printf"]
+	path = sw/printf
+	url = https://github.com/mpaland/printf.git
