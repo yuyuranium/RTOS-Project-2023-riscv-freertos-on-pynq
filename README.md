@@ -9,9 +9,10 @@ Porting FreeRTOS to a RISC-V based system on PYNQ-Z2
     ```
 - Install git libraries
     ```
-    $ fusesoc library add --sync-type git ibex https://github.com/lowRISC/ibex.git          # ibex library
-    $ fusesoc library add --sync-type git pulp-axi https://github.com/pulp-platform/axi.git # pulp-axi library
-    $ fusesoc library add --sync-type local ibex-axi [relate path to pynq/pl]               # ibex-axi local library
+    $ fusesoc library add --sync-type git ibex https://github.com/lowRISC/ibex.git                            # ibex library
+    $ fusesoc library add --sync-type git pulp-axi https://github.com/pulp-platform/axi.git                   # pulp-axi library
+    $ fusesoc library add --sync-type git pulp-common-cells https://github.com/pulp-platform/common_cells.git # pulp-common-cells library
+    $ fusesoc library add --sync-type local ibex-axi [relate path to pynq/pl]                                 # ibex-axi local library
     ```
 - Install ibex dependencies 
     ```
