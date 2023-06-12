@@ -40,8 +40,8 @@
  *----------------------------------------------------------*/
 
 #define configISR_STACK_SIZE_WORDS          ( 500 )
-#define configMTIME_BASE_ADDRESS            ( 0x42200000UL )
-#define configMTIMECMP_BASE_ADDRESS         ( 0x42210000UL )
+#define configMTIME_BASE_ADDRESS            ( 0x30000UL )
+#define configMTIMECMP_BASE_ADDRESS         ( 0x30008UL )
 
 #define configUSE_PREEMPTION                1
 #define configUSE_IDLE_HOOK                 0
