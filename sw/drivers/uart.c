@@ -21,6 +21,6 @@ void uart_putchar(char c)
 int uart_getchar()
 {
     // busy waiting until rx fifo has data to read
-    while (MMIO_READ(UART_BASE + UART_STAT_REG) & 0b1);
+    while ((MMIO_READ(UART_BASE + UART_STAT_REG) & 0b1) == 0);
     return MMIO_READ(UART_BASE + UART_RX_FIFO);
 }
