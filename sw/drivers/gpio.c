@@ -13,28 +13,28 @@ void gpio_init()
     MMIO_WRITE(GPIO_BASE + GPIO2_TRI, GPIO_INPUT);
 }
 
-uint32_t gpio_read()
+uint32_t gpio_read(void *gpio)
 {
-    uint32_t data = MMIO_READ(GPIO_BASE + GPIO2_DATA);
+    uint32_t data = MMIO_READ(GPIO_BASE + gpio);
     return data;
 }
 
-void gpio_write(uint32_t data)
+void gpio_write(void *gpio, uint32_t data)
 {
-    MMIO_WRITE(GPIO_BASE + GPIO_DATA, data);
+    MMIO_WRITE(GPIO_BASE + gpio, data);
 }
 
 
 uint32_t gpio_read_pin(uint32_t pin)
 {
-    uint32_t data = gpio_read();
+    uint32_t data = gpio_read((void *)GPIO2_DATA);
     data = (data >> pin) & 0b1;
     return data;
 }
 
 void gpio_write_pin(uint32_t pin, uint32_t val)
 {
-    uint32_t data = gpio_read();
+    uint32_t data = gpio_read((void *)GPIO_DATA);
     if (val) {
         // set the corresponding bit
         data |= (0b1 << pin);
@@ -42,13 +42,13 @@ void gpio_write_pin(uint32_t pin, uint32_t val)
         // clear the corresponding bit
         data &= ~(0b1 << pin);
     }
-    gpio_write(data);
+    gpio_write(GPIO_DATA, data);
 }
 
 void gpio_toggle_pin(uint32_t pin)
 {
-    uint32_t data = gpio_read();
+    uint32_t data = gpio_read((void *)GPIO_DATA);
     // toggle the corresponding bit
     data ^= (0b1 << pin);
-    gpio_write(data);
+    gpio_write(GPIO_DATA, data);
 }
