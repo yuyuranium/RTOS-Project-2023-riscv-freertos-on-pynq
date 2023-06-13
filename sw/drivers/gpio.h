@@ -12,8 +12,8 @@
 #define GPIO2_TRI  0x000c
 
 // GPIO tri-state control
-#define GPIO_INPUT  1
-#define GPIO_OUTPUT 0
+#define GPIO_INPUT  0b1111
+#define GPIO_OUTPUT 0b0000
 
 void gpio_init();
 

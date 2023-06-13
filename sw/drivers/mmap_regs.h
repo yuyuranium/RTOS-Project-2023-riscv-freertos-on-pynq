@@ -5,6 +5,6 @@
 #define GPIO_BASE 0x41200000
 
 // UART
-#define UART_BASE  0x41c00000
+#define UART_BASE  0x42c00000
 
 #endif  // DRIVERS_MMAP_REGS_H_
