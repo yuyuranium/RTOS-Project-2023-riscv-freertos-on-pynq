@@ -44,6 +44,7 @@ DRIVER_SRC = \
 
 # collect all program sources
 PROGRAM_SRC = $(wildcard $(PROGRAM_SOURCE_DIR)/*.c)
+PROGRAM_ASM = $(wildcard $(PROGRAM_SOURCE_DIR)/*.S)
 
 ####################
 # Compiler options #
@@ -68,7 +69,7 @@ LIBS    += -lm -lc -lgcc
 PRINTF_OBJ  = $(PRINTF_SRC:.c=.o)
 PORT_OBJ    = $(PORT_SRC:.c=.o) $(PORT_ASM:.S=.o)
 DRIVER_OBJ  = $(DRIVER_SRC:.c=.o)
-PROGRAM_OBJ = $(PROGRAM_SRC:.c=.o)
+PROGRAM_OBJ = $(PROGRAM_SRC:.c=.o) $(PROGRAM_ASM:.S=.o)
 OBJS        = $(PRINTF_OBJ) $(PORT_OBJ) $(DRIVER_OBJ) $(PROGRAM_OBJ)
 
 # determine output files
