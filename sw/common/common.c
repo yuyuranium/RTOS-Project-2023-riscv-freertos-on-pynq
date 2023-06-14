@@ -9,11 +9,10 @@
  */
 void _putchar(char character)
 {
-    // if (character == '\n') {
-    //     uart_putchar('\r');
-    // }
-    // uart_putchar(character);
-    *(char *)(0x20000) = character;
+    if (character == '\n') {
+        uart_putchar('\r');
+    }
+    uart_putchar(character);
 }
 
 /*
