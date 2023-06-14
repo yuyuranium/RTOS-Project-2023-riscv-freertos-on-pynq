@@ -27,7 +27,7 @@ COMMON_SOURCE_DIR   = $(SW_ROOT)/common
 DRIVER_SOURCE_DIR   = $(SW_ROOT)/drivers
 PROGRAM_SOURCE_DIR  = $(SW_ROOT)/$(PROGRAM)
 
-# use heap_5 by default
+# use heap_4 by default
 HEAP_CONFIG ?= 4
 
 # collect all FreeRTOS sources
