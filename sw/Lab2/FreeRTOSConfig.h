@@ -34,9 +34,9 @@
  * application requirements.
  *
  * THESE PARAMETERS ARE DESCRIBED WITHIN THE 'CONFIGURATION' SECTION OF THE
- * FreeRTOS API DOCUMENTATION AVAILABLE ON THE FreeRTOS.org WEB SITE.
+ * FreeRTOS API DOCUMENTATION AVAILABLE on the freertos.org web site.
  *
- * See http://www.freertos.org/a00110.html.
+ * see http://www.freertos.org/a00110.html.
  *----------------------------------------------------------*/
 
 #define configISR_STACK_SIZE_WORDS          ( 500 )
@@ -48,7 +48,7 @@
 #define configUSE_IDLE_HOOK                 0
 #define configUSE_TICK_HOOK                 0
 #define configCPU_CLOCK_HZ                  ( ( uint32_t ) ( 100000000 ) ) /* 100 MHz */
-#define configTICK_RATE_HZ                  ( ( TickType_t ) 1 ) /* 1 KHz (TBD) */
+#define configTICK_RATE_HZ                  ( ( TickType_t ) 10000 ) /* 1 KHz (TBD) */
 #define configMAX_PRIORITIES                ( 15 )
 #define configMINIMAL_STACK_SIZE            ( ( uint32_t ) 100 ) /* Can be as low as 60 but some of the demo tasks that use this constant require it to be higher. */
 #define configTOTAL_HEAP_SIZE               ( ( size_t ) ( 12 * 1024 ) )
