@@ -9,7 +9,7 @@ void vTaskTest( void * pvParameters )
 {
     for( ;; )
     {
-        vTaskDelay(1);
+        vTaskDelay(1000);
         printf("hello\n");
     }
 }
@@ -18,7 +18,7 @@ void vTaskTest2( void * pvParameters )
 {
     for( ;; )
     {
-        vTaskDelay(2);
+        vTaskDelay(2000);
         printf("world\n");
     }
 }

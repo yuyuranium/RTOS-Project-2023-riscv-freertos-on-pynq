@@ -40,13 +40,13 @@
  *----------------------------------------------------------*/
 
 #define configISR_STACK_SIZE_WORDS          ( 500 )
-#define configMTIME_BASE_ADDRESS            ( 0x42200000UL )
-#define configMTIMECMP_BASE_ADDRESS         ( 0x42210000UL )
+#define configMTIME_BASE_ADDRESS            ( 0x43c00000UL )
+#define configMTIMECMP_BASE_ADDRESS         ( 0x43c00008UL )
 
 #define configUSE_PREEMPTION                1
 #define configUSE_IDLE_HOOK                 0
 #define configUSE_TICK_HOOK                 0
-#define configCPU_CLOCK_HZ                  ( ( uint32_t ) ( 100000000 ) ) /* 100 MHz */
+#define configCPU_CLOCK_HZ                  ( ( uint32_t ) ( 25000000 ) ) /* 25 MHz */
 #define configTICK_RATE_HZ                  ( ( TickType_t ) 1000 ) /* 1 KHz (TBD) */
 #define configMAX_PRIORITIES                ( 7 )
 #define configMINIMAL_STACK_SIZE            ( ( uint32_t ) 100 ) /* Can be as low as 60 but some of the demo tasks that use this constant require it to be higher. */
