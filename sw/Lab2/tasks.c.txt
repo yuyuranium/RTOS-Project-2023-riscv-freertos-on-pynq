@@ -5441,7 +5441,7 @@ void xIterateList (List_t* list, char *str) {
 		struct xLIST_ITEM *item = (&list->xListEnd)->pxNext;
 		for (int i = 0 ; i < length ; i++) {
 			tskTCB *tcb = item->pvOwner;
-			sprintf(Monitor_data," %-15s  %2ld/%2ld %*s %-12p %*s %-14p %*s %s \n\r", tcb->pcTaskName, tcb->uxBasePriority, tcb->uxPriority, 16, "", tcb->pxStack, 3, "", tcb->pxTopOfStack, 5, "", str);
+			sprintf(Monitor_data," %-15s  %2ld/%2ld %*s %-12p %*s %-14p %*s %s", tcb->pcTaskName, tcb->uxBasePriority, tcb->uxPriority, 16, "", tcb->pxStack, 3, "", tcb->pxTopOfStack, 5, "", str);
 		
       printf("%s\n", Monitor_data);
       /*
@@ -5471,7 +5471,7 @@ void Taskmonitor(void){
 
 
 	/* Print title */
-  sprintf(Monitor_data,"|Name            |Priority(Base/actual) |pxStack     |pxTopOfStack  |State     |\n\r");
+  sprintf(Monitor_data,"|Name            |Priority(Base/actual) |pxStack     |pxTopOfStack  |State     |");
 	
   printf("%s\n", Monitor_data);
   /*
