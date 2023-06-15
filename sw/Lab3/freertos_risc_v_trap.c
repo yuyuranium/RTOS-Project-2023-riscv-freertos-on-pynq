@@ -33,7 +33,7 @@ void freertos_risc_v_application_interrupt_handler( uint32_t cause )
 {
     // Disable MEIE (bit 11) in MIE Register  
     __asm__ volatile (
-        "li     t0, 1<<11\n\t"
+    "li     t0, 1<<11\n\t"
         "csrc   mie, t0\n\t" 
     );
 
@@ -41,15 +41,15 @@ void freertos_risc_v_application_interrupt_handler( uint32_t cause )
     printf("MCAUSE: 0x%x\n", cause);
 
 
-	  // Red toggle
+    // Red toggle
     gpio_toggle_pin(LED_RED_PIN);
 
-	  // Give the semaphore to unblock the handler task
-	  BaseType_t xHigherPriorityTaskWoken = pdFALSE;
+    // Give the semaphore to unblock the handler task
+    BaseType_t xHigherPriorityTaskWoken = pdFALSE;
 
-	  xSemaphoreGiveFromISR(xBinarySemaphore, &xHigherPriorityTaskWoken);
+    xSemaphoreGiveFromISR(xBinarySemaphore, &xHigherPriorityTaskWoken);
 
-	  portYIELD_FROM_ISR(xHigherPriorityTaskWoken);
+    portYIELD_FROM_ISR(xHigherPriorityTaskWoken);
 
     return;
 }

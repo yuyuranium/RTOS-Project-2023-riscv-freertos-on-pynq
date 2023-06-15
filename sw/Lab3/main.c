@@ -20,43 +20,43 @@ SemaphoreHandle_t xBinarySemaphore;
 uint32_t get_time() 
 {
     uint32_t mtime = MMIO_READ(0x43c00000);
-    
+
     return mtime;
 }
 
 
 void Green_LED_Task(void *pvParameters)
 {
-	// Green Blinking
-	for( ; ; ) {
-		gpio_toggle_pin(LED_GREEN_PIN);
-		vTaskDelay(1000);
-	}
+    // Green Blinking
+    for( ; ; ) {
+        gpio_toggle_pin(LED_GREEN_PIN);
+        vTaskDelay(1000);
+    }
 }
 
 
 void vHandlerTask( void *pvParameters )
 {
 
-	for( ; ; ) {
-		// Take the semaphore
-		xSemaphoreTake(xBinarySemaphore, portMAX_DELAY);
+    for( ; ; ) {
+        // Take the semaphore
+        xSemaphoreTake(xBinarySemaphore, portMAX_DELAY);
 
-		// Semaphore was obtained
+        // Semaphore was obtained
 
-		// Orange Blinks 5 times
-		for (int i = 0 ; i < 10 ; i++) {
-			uint32_t From_begin_time = get_time();
-      gpio_toggle_pin(LED_ORANGE_PIN);
-			while(get_time() - From_begin_time < 7000000);
-		}
-    
-		// Reset interrupt register
-    __asm__ volatile (
+        // Orange Blinks 5 times
+        for (int i = 0 ; i < 10 ; i++) {
+            uint32_t From_begin_time = get_time();
+            gpio_toggle_pin(LED_ORANGE_PIN);
+            while(get_time() - From_begin_time < 7000000);
+        }
+
+        // Reset interrupt register
+        __asm__ volatile (
         "li     t0, 1<<11\n\t"
-        "csrs   mie, t0\n\t" 
-    );
-	}
+            "csrs   mie, t0\n\t" 
+        );
+    }
 }
 
 
@@ -66,36 +66,36 @@ void vHandlerTask( void *pvParameters )
   */
 int main(void)
 {
-  // Create the semaphore //
-  xBinarySemaphore = xSemaphoreCreateBinary();
+    // Create the semaphore //
+    xBinarySemaphore = xSemaphoreCreateBinary();
 
-  if (xBinarySemaphore == NULL)
-	  return 0;
+    if (xBinarySemaphore == NULL)
+        return 0;
 
-  // Initialize gpio
-  gpio_init();
+    // Initialize gpio
+    gpio_init();
 
-  // task create //
-  xTaskCreate (
-	    Green_LED_Task,
-	    "Green_LED_Task",
-	    256,
-	    NULL,
-	    1,
-	    NULL );
+    // task create //
+    xTaskCreate (
+        Green_LED_Task,
+        "Green_LED_Task",
+        256,
+        NULL,
+        1,
+        NULL );
 
-  xTaskCreate (
-  	  vHandlerTask,
-  	  "vHandlerTask",
-  	  256,
-  	  NULL,
-  	  3,
-  	  NULL );
-  
-  // Start Scaheduler
-  vTaskStartScheduler();
+    xTaskCreate (
+        vHandlerTask,
+        "vHandlerTask",
+        256,
+        NULL,
+        3,
+        NULL );
 
-  // Infinite loop
-  while (1) { }
+    // Start Scaheduler
+    vTaskStartScheduler();
+
+    // Infinite loop
+    while (1) { }
 }
 
