@@ -47,7 +47,6 @@ PRINTF_SRC = $(PRINTF_SOURCE_DIR)/printf.c
 # collect common sources
 PORT_SRC = \
 	$(FREERTOS_SOURCE_DIR)/portable/GCC/RISC-V/port.c \
-	$(COMMON_SOURCE_DIR)/freertos_risc_v_trap.c \
 	$(COMMON_SOURCE_DIR)/common.c
 
 # collect all assembly codes
