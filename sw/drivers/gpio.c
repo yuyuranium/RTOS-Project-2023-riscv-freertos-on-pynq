@@ -13,13 +13,13 @@ void gpio_init()
     MMIO_WRITE(GPIO_BASE + GPIO2_TRI, GPIO_INPUT);
 }
 
-uint32_t gpio_read(void *gpio)
+uint32_t __attribute__((optimize("O1"))) gpio_read(void *gpio)
 {
     uint32_t data = MMIO_READ(GPIO_BASE + gpio);
     return data;
 }
 
-void gpio_write(void *gpio, uint32_t data)
+void __attribute__((optimize("O1"))) gpio_write(void *gpio, uint32_t data)
 {
     MMIO_WRITE(GPIO_BASE + gpio, data);
 }

@@ -27,7 +27,7 @@ COMMON_SOURCE_DIR   = $(SW_ROOT)/common
 DRIVER_SOURCE_DIR   = $(SW_ROOT)/drivers
 PROGRAM_SOURCE_DIR  = $(SW_ROOT)/$(PROGRAM)
 
-# use heap_5 by default
+# use heap_4 by default
 HEAP_CONFIG ?= 4
 
 # collect all FreeRTOS sources
@@ -47,7 +47,6 @@ PRINTF_SRC = $(PRINTF_SOURCE_DIR)/printf.c
 # collect common sources
 PORT_SRC = \
 	$(FREERTOS_SOURCE_DIR)/portable/GCC/RISC-V/port.c \
-	$(COMMON_SOURCE_DIR)/freertos_risc_v_trap.c \
 	$(COMMON_SOURCE_DIR)/common.c
 
 # collect all assembly codes
