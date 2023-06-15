@@ -48,12 +48,12 @@ void vHandlerTask( void *pvParameters )
         for (int i = 0 ; i < 10 ; i++) {
             uint32_t From_begin_time = get_time();
             gpio_toggle_pin(LED_ORANGE_PIN);
-            while(get_time() - From_begin_time < 7000000);
+            while (get_time() - From_begin_time < 7000000);
         }
 
         // Reset interrupt register
         __asm__ volatile (
-        "li     t0, 1<<11\n\t"
+            "li     t0, 1<<11\n\t"
             "csrs   mie, t0\n\t" 
         );
     }
