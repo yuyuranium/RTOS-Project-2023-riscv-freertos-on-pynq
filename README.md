@@ -102,6 +102,34 @@ Or for FreeRTOS applications
 $ make -C sw/FreeRTOS-Demo-Hello
 ```
 
+### Porting new program to the system
+
+1. Make a directory in `sw`
+
+2. Write your program and main function
+
+3. Write a `Makefile` and define your program name
+   
+   ```
+   PROGRAM := <YOUR_PROGRAM_NAME>
+   ```
+   
+   **Note:** The program name must be the same as the directory name you created
+
+4. Include the Makefile under `common` directory
+   
+   1. If you are writing a baremetal program
+      
+      ```
+      include ../common/barebone.mk
+      ```
+   
+   2. If you are using FreeRTOS
+      
+      ```
+      include ../common/freertos.mk
+      ```
+
 ## Boot Flow
 
 1. Generate the bitstream (`*.bit`) and hardware handoff (`*.hwh`)
