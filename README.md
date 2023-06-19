@@ -34,9 +34,7 @@ The hardware platform is built on ZYNQ FPGA
 
 ![image](https://github.com/yuyuranium/RTOS-Project-2023-riscv-freertos-on-pynq/assets/79467307/90f93d9e-dacb-4372-a015-3781cbefbcb3)
 
-## Boot Flow
-
-![image](https://github.com/yuyuranium/RTOS-Project-2023-riscv-freertos-on-pynq/assets/79467307/d1153f7b-bce9-45f2-a33d-0f00dec12c5a)
+## 
 
 ## Result
 
@@ -48,31 +46,72 @@ The hardware platform is built on ZYNQ FPGA
 
 ![image](https://github.com/yuyuranium/RTOS-Project-2023-riscv-freertos-on-pynq/assets/79467307/1d4aca44-1970-4537-a5f9-85f7a549d9ab)
 
-## Build Vivado Project with fusesoc
+## Build Hardware Platform with FuseSoC
 
 ### Steps
 
-- Install fusesoc
+- Install [fusesoc](https://github.com/olofk/fusesoc)
   
   ```
   $ pip3 install fusesoc==2.1
   ```
+
 - Install git libraries
   
   ```
+  $ cd pynq_z2/pl
   $ fusesoc library add --sync-type git ibex https://github.com/lowRISC/ibex.git                            # ibex library
   $ fusesoc library add --sync-type git pulp-axi https://github.com/pulp-platform/axi.git                   # pulp-axi library
   $ fusesoc library add --sync-type git pulp-common-cells https://github.com/pulp-platform/common_cells.git # pulp-common-cells library
-  $ fusesoc library add --sync-type local ibex-axi [relate path to pynq/pl]                                 # ibex-axi local library
+  $ fusesoc library add --sync-type local ibex-axi .                                                        # ibex-axi local library
   ```
+
 - Install ibex dependencies 
   
   ```
   $ cd fusesoc_libraries/ibex
   $ pip3 install -r python-requirements.txt
   ```
+
 - Build and run vivado Project
   
   ```
   $ bash scripts/build_proj.sh
   ```
+
+### Output
+
+You will get a bitstream file and a hardware handoff file inside the build directory.
+
+```
+build/caslab_rtos_ibex_axi_1.0.0/default-vivado/caslab_rtos_ibex_axi_1.0.0.bit
+build/caslab_rtos_ibex_axi_1.0.0/default-vivado/caslab_rtos_ibex_axi_1.0.0.hwh
+```
+
+## Build Software
+
+You can use GNU make to build the software.
+
+```
+$ make -C sw/Barebone-Hello
+```
+
+Or for FreeRTOS applications
+
+```
+$ make -C sw/FreeRTOS-Demo-Hello
+```
+
+## Boot Flow
+
+1. Generate the bitstream (`*.bit`) and hardware handoff (`*.hwh`)
+
+2. Copy the bitstrem and hardware handoff to the PS of PYNQ-Z2
+
+3. Compile the software and get the binary file (`*.bin`)
+
+4. Copy the binary file to the PS of PYNQ-Z2
+
+5. Run the cell of in the [python notebook](https://github.com/yuyuranium/RTOS-Project-2023-riscv-freertos-on-pynq/blob/feat/update-readme/pynq_z2/ps/ibex_ctrl.ipynb) in PS to reset Ibex and boot
+
+![image](https://github.com/yuyuranium/RTOS-Project-2023-riscv-freertos-on-pynq/assets/79467307/d1153f7b-bce9-45f2-a33d-0f00dec12c5a)
