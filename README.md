@@ -8,11 +8,11 @@ Porting FreeRTOS to a RISC-V based system on PYNQ-Z2
 
 - **Board**: PYNQ-Z2
 
-- **Processor**: [lowRISC Ibex RISC-V core]([GitHub - lowRISC/ibex: Ibex is a small 32 bit RISC-V CPU core, previously known as zero-riscy.](https://github.com/lowRISC/ibex)) on [XC7Z020]([Zynq 7000 SoC](https://www.xilinx.com/products/silicon-devices/soc/zynq-7000.html))
+- **Processor**: [lowRISC Ibex RISC-V core](https://github.com/lowRISC/ibex) on [Zynq 7000 SoC](https://www.xilinx.com/products/silicon-devices/soc/zynq-7000.html)
 
 ### Compiler
 
-- [lowRISC GCC toolchain]([GitHub - lowRISC/lowrisc-toolchains: UNSUPPORTED INTERNAL toolchain builds](https://github.com/lowRISC/lowrisc-toolchains)) targeting Ibex
+- [lowRISC GCC toolchain](https://github.com/lowRISC/lowrisc-toolchains) targeting Ibex
 
 ## System Architecture
 
@@ -32,21 +32,21 @@ The hardware platform is built on ZYNQ FPGA
 
 - UART, GPIO and Timer
 
-![](https://hackmd-prod-images.s3-ap-northeast-1.amazonaws.com/uploads/upload_46159778b6f2b83e0e26bb165563f434.png?AWSAccessKeyId=AKIA3XSAAW6AWSKNINWO&Expires=1687160454&Signature=BBNIiAxBSHTD3EhHBGTCfk9mLdg%3D)
+![image](https://github.com/yuyuranium/RTOS-Project-2023-riscv-freertos-on-pynq/assets/79467307/90f93d9e-dacb-4372-a015-3781cbefbcb3)
 
 ## Boot Flow
 
-![](https://hackmd-prod-images.s3-ap-northeast-1.amazonaws.com/uploads/upload_c4c8b0c79a869e2f1a383782cc83a266.png?AWSAccessKeyId=AKIA3XSAAW6AWSKNINWO&Expires=1687160531&Signature=jq7blNw9K4KMv3EIZ3ixQ924f6w%3D)
+![image](https://github.com/yuyuranium/RTOS-Project-2023-riscv-freertos-on-pynq/assets/79467307/d1153f7b-bce9-45f2-a33d-0f00dec12c5a)
 
 ## Result
 
 ### Schematic Diagram
 
-![](https://hackmd-prod-images.s3-ap-northeast-1.amazonaws.com/uploads/upload_9349c80322221b86964f075f69197312.png?AWSAccessKeyId=AKIA3XSAAW6AWSKNINWO&Expires=1687160689&Signature=IpvILqnepvlw7K9kypzcTMMF3Ak%3D)
+![image](https://github.com/yuyuranium/RTOS-Project-2023-riscv-freertos-on-pynq/assets/79467307/f5dedabd-8453-4b07-9d76-6f4a79b81a12)
 
 ### Synthesis and Implementation
 
-![](https://hackmd-prod-images.s3-ap-northeast-1.amazonaws.com/uploads/upload_1b11332bdaafd764261550f37ee27954.png?AWSAccessKeyId=AKIA3XSAAW6AWSKNINWO&Expires=1687160999&Signature=q%2FGLJL%2FaqrGg0ML3SHSe%2BarZxzw%3D)
+![image](https://github.com/yuyuranium/RTOS-Project-2023-riscv-freertos-on-pynq/assets/79467307/1d4aca44-1970-4537-a5f9-85f7a549d9ab)
 
 ## Build Vivado Project with fusesoc
 
