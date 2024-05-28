@@ -140,6 +140,6 @@ $ make -C sw/FreeRTOS-Demo-Hello
 
 4. Copy the binary file to the PS of PYNQ-Z2
 
-5. Run the cell of in the [python notebook](https://github.com/yuyuranium/RTOS-Project-2023-riscv-freertos-on-pynq/blob/feat/update-readme/pynq_z2/ps/ibex_ctrl.ipynb) in PS to reset Ibex and boot
+5. Run the cell of in the [python notebook](https://github.com/yuyuranium/RTOS-Project-2023-riscv-freertos-on-pynq/blob/main/pynq_z2/ps/ibex_ctrl.ipynb) in PS to reset Ibex and boot
 
 ![image](https://github.com/yuyuranium/RTOS-Project-2023-riscv-freertos-on-pynq/assets/79467307/d1153f7b-bce9-45f2-a33d-0f00dec12c5a)
